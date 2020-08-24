@@ -1,0 +1,33 @@
+.image-card {
+    position: relative;
+    margin: 0;
+
+    &__btn {
+        display: none;
+        position: absolute;
+
+        &--add {
+            right: 20px;
+            top: 15px;
+        }
+
+        &--download {
+            right: 20px;
+            bottom: 15px;
+        }
+    }
+
+    &__description {
+        position: absolute;
+        left: 15px;
+        bottom: 15px;
+        color: #ffffff;
+        font-size: 16px;
+    }
+
+    &:hover {
+        .image-card__btn {
+            display: inline;
+        }
+    }
+}

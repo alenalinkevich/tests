@@ -1,0 +1,6 @@
+<figure class="image-card">
+    <img #img class="image-card__img" [src]="url" (load)="calculateRows()">
+    <button mat-raised-button color="primary" class="image-card__btn image-card__btn--add" type="button" (click)="addImage()">Add Image</button>
+    <a mat-raised-button class="image-card__btn image-card__btn--download" [href]="downloadUrl" [download]="id" target="_blank" rel="nofollow">Download</a>
+    <figcaption class="image-card__description">Author: {{authorName}}</figcaption>
+</figure>

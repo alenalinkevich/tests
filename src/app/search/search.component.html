@@ -1,0 +1,4 @@
+<div class="search-form">
+    <input class="search-form__input" type="text" [(ngModel)]="searchRequest" [value]="searchRequest" placeholder="Search Image">
+    <button mat-button class="search-form__btn" type="button" (click)="searchImages(searchRequest)">Search</button>
+</div>
