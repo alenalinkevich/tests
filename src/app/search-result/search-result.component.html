@@ -1,0 +1,10 @@
+<mat-grid-list #thenBlock #gridList cols="3" [rowHeight]="rowHeight" [gutterSize]="gutterSize+'px'">
+
+    <mat-grid-tile *ngFor="let img of images$ | async" [rowspan]="item.rows">
+
+        <app-image-card #item [id]="img.id" [url]="img.urls.small" [authorName]="img.user.username"
+            [downloadUrl]="img.links.download"></app-image-card>
+
+    </mat-grid-tile>
+
+</mat-grid-list>
