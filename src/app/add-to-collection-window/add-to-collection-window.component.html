@@ -1,0 +1,10 @@
+<div>
+    <div *ngIf="!isCreateCollection" class="adding-collection">
+        <h2 mat-dialog-title>Adding to collection</h2>
+        <button class="adding-collection__item" mat-raised-button color="primary" (click)="createCollection(true)">Create new collection</button>
+        <button class="adding-collection__item" mat-raised-button *ngFor="let collection of collections$ | async">
+            Add to "{{collection.title}}" collection.
+        </button>
+    </div>
+    <app-create-collection *ngIf="isCreateCollection" (createCollection)="createCollection($event)"></app-create-collection>
+</div>

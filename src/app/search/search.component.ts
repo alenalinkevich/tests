@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../store/interfaces/app-state.interfaces'
-import { getAllImages } from '../../store/actions/seach-actions';
+import { AppState } from '../../store/interfaces/app.state.interfaces'
+import { getAllImages } from '../../store/actions/images.actions';
 
 @Component({
     selector: 'app-search',

@@ -13,7 +13,7 @@ export interface Image {
     }
 }
 
-export interface SearchState {
+export interface ImagesState {
     images: Image[];
     error: boolean;
 }

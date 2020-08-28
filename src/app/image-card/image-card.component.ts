@@ -1,4 +1,10 @@
-import { Input, Component, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { Input, Component, HostListener, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddToCollectionWindowComponent } from '../add-to-collection-window/add-to-collection-window.component';
+import { CollectionsService } from '../collections.service';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../../store/interfaces/app.state.interfaces';
+import { selectIsUserAuthorized } from '../../store/selectors/collections.selector';
 
 @Component({
     selector: 'app-image-card',
@@ -6,7 +12,7 @@ import { Input, Component, HostListener, ElementRef, ViewChild } from '@angular/
     styleUrls: ['./image-card.component.scss']
 })
 
-export class ImageCardComponent {
+export class ImageCardComponent implements OnInit {
     @Input() id: string;
     @Input() url: string;
     @Input() downloadUrl: string;
@@ -17,13 +23,35 @@ export class ImageCardComponent {
 
     public rows: number = 0;
 
+    private isAuthorized$;
+
+    ngOnInit(): void {
+    }
+
     addImage() {
-        
-        console.log(this.id);
+        this.isAuthorized$ = this.store.pipe(select(selectIsUserAuthorized))
+            .subscribe(isAuthorized => {
+                if (!isAuthorized) {
+                    window.open(this.collectionsService.buildAutentificationString(), "_self");
+                }
+                else {
+                    this.dialog.open(AddToCollectionWindowComponent, { data: { imageId: this.id } });
+                }
+            })
+    }
+
+    ngOnDestroy(): void {
+        this.isAuthorized$.unsubscribe();
     }
 
     @HostListener('window:resize')
     calculateRows() {
         this.rows = Math.floor(this.img.nativeElement.offsetHeight / (this.rowHeight + this.gutterSize));
     }
+
+    constructor(
+        public dialog: MatDialog,
+        private collectionsService: CollectionsService,
+        private store: Store<AppState>
+    ) { }
 }
