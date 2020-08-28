@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectAllImages } from '../../store/selectors/search.selectors'
-import { Image } from '../../store/interfaces/search-state.intefaces'
-import { AppState } from '../../store/interfaces/app-state.interfaces'
+import { selectAllImages } from '../../store/selectors/images.selectors';
+import { Image } from '../../store/interfaces/images.state.intefaces';
+import { AppState } from '../../store/interfaces/app.state.interfaces';
 
 @Component({
   selector: 'app-serach-result',

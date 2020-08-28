@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Create collection</h2>
+<div class="create-collection">
+    <mat-form-field class="create-collection__item">
+        <mat-label>Write a name for collection</mat-label>
+        <input matInput placeholder="Collection Name" [(ngModel)]="collectionName" [value]="collectionName">
+    </mat-form-field>
+
+    <mat-form-field class="create-collection__item">
+        <mat-label>Write collection decription</mat-label>
+        <textarea matInput placeholder="Collection decription..." [(ngModel)]="collectionDescription" [value]="collectionDescription"></textarea>
+    </mat-form-field>
+
+    <button class="create-collection__item" mat-raised-button color="primary" (click)="createCollectionRequest()">Save</button>
+</div>

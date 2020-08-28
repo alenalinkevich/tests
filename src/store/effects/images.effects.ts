@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap} from 'rxjs/operators';
 import { ImagesService } from '../../app/images.service';
-import {getAllImages, loadAllImagesSuccess} from '../actions/seach-actions';
+import {getAllImages, loadAllImagesSuccess} from '../actions/images.actions';
  
 @Injectable()
 export class ImagesEffects {
