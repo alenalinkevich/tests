@@ -8,6 +8,6 @@ Run `npm start` for a dev server.
 
 ## Specificity
 
-Authorisation happen when you try to add collections or go /colletion route
+Authorisation happen when you try to add collections or go to /colletion route
 
 Adding to collection doesn't work but creating does
