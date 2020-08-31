@@ -10,4 +10,6 @@ Run `npm start` for a dev server.
 
 Authorisation happen when you try to add collections or go to /colletion route
 
-Adding to collection doesn't work but creating does
+Adding to the collection is working.
+
+Showing collections and photos in the collection does not ready.
