@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Collection } from '../interfaces/collections.state.interface'
+import { Image } from '../interfaces/images.state.intefaces'
 
 export const userAuthentication = createAction('[Auth] user aurenrification',  props<{ authToken: string }>());
 
@@ -15,6 +16,6 @@ export const loadAllCollectionsSuccess = createAction('[Collection] Collections 
 
 export const loadAllCollectionsFailed = createAction('[Collection] Something happened');
 
-export const addPictureTCollection = createAction('[Collection] adding picture to collection', props<{ name: string, description: string }>());
+export const addPictureTCollection = createAction('[Collection] adding picture to collection', props<{ collectionId: string, photoId: string }>());
 
-export const addPictureTCollectionSuccess = createAction('[Collection] adding picture to collection was successfull', props<{ collection: Collection }>());
+export const addPictureTCollectionSuccess = createAction('[Collection] adding picture to collection was successfull', props<{ collectionId: string, photoId: string }>());

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import Unsplash from 'unsplash-js';
 import { Collection } from 'src/store/interfaces/collections.state.interface';
+import { Image } from 'src/store/interfaces/images.state.intefaces';
 
 @Injectable({
   providedIn: 'root'
@@ -36,11 +37,12 @@ export class CollectionsService {
         this.unsplash.auth.setBearerToken(json.access_token);
         this.unsplash.currentUser.profile()
         .then(response => response.json())
-        .then(user => {
-          console.log(user);
-            this.userName = user.username;
-        });
+        .then(user => this.userName = user.username);
       });
+  }
+
+  searchPhotos(query: string): Promise<Image[]>{
+    return this.unsplash.search.photos(query , 1, 21, { orientation: "portrait" }).then(response => response.json());
   }
 
   getCollections(): Promise<Collection[]> {
@@ -51,8 +53,8 @@ export class CollectionsService {
     return this.unsplash.collections.getCollection(id).then(response => response.json());
   }
 
-  addPhotoToCollection(collectionId: string, photoId: string){
-    this.unsplash.collections.addPhotoToCollection(collectionId, photoId).then(response => response.json());
+  addPhotoToCollection(collectionId: string, photoId: string): Promise<any>{
+    return this.unsplash.collections.addPhotoToCollection(collectionId, photoId).then(response => response.json());
   }
 
   getCollectionPhotos(id: string): Promise<any[]> {

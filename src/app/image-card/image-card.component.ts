@@ -5,6 +5,7 @@ import { CollectionsService } from '../collections.service';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../store/interfaces/app.state.interfaces';
 import { selectIsUserAuthorized } from '../../store/selectors/collections.selector';
+import { concatAll } from 'rxjs/operators';
 
 @Component({
     selector: 'app-image-card',
@@ -35,7 +36,7 @@ export class ImageCardComponent implements OnInit {
                     window.open(this.collectionsService.buildAutentificationString(), "_self");
                 }
                 else {
-                    this.dialog.open(AddToCollectionWindowComponent, { data: { imageId: this.id } });
+                    this.dialog.open(AddToCollectionWindowComponent, { data: { photoId: this.id } });
                 }
             })
     }

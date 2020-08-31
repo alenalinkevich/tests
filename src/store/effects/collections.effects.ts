@@ -5,13 +5,16 @@ import { from } from 'rxjs';
 import { CollectionsService } from '../../app/collections.service';
 import { Router } from '@angular/router';
 
-import { 
-  userAuthentication, 
-  userAuthenticationSuccess, 
-  collectionCreateSuccess, 
+import {
+  userAuthentication,
+  userAuthenticationSuccess,
+  collectionCreateSuccess,
   createNewCollection,
   getAllCollections,
-  loadAllCollectionsSuccess } from '../actions/collections.actions';
+  loadAllCollectionsSuccess,
+  addPictureTCollection,
+  addPictureTCollectionSuccess
+} from '../actions/collections.actions';
 
 
 @Injectable()
@@ -41,6 +44,14 @@ export class CollectionsEffects {
       ofType(getAllCollections),
       switchMap(() => from(this.collectionsService.getCollections()).pipe(
         map(collections => loadAllCollectionsSuccess({ collections }))
+      ))
+    ));
+
+  addPhotoToCollection$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addPictureTCollection),
+      switchMap((action) => from(this.collectionsService.addPhotoToCollection(action.collectionId, action.photoId)).pipe(
+        map(addedPhoto => addPictureTCollectionSuccess( { collectionId: addedPhoto.photo.collectionId, photoId: addedPhoto.collection.photoId }))
       ))
     ));
 
