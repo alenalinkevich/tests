@@ -1,14 +1,14 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { selectAllCollections } from '../../store/selectors/collections.selector';
-import { getAllCollections } from '../../store/actions/collections.actions'
+import { getAllCollections, addPictureTCollection } from '../../store/actions/collections.actions';
 import { AppState } from '../../store/interfaces/app.state.interfaces';
 import { Collection } from '../../store/interfaces/collections.state.interface'
 
 export interface DialogData {
-  imageId: string | null;
+  photoId: string | null;
 }
 
 @Component({
@@ -17,9 +17,9 @@ export interface DialogData {
   styleUrls: ['./add-to-collection-window.component.scss']
 })
 export class AddToCollectionWindowComponent implements OnInit {
-
   isCreateCollection: boolean = false;
   collections$: Observable<Collection[]> = this.store.pipe(select(selectAllCollections));
+  isAdded: boolean = false;
 
   ngOnInit(): void {
     this.store.dispatch(getAllCollections());
@@ -28,6 +28,11 @@ export class AddToCollectionWindowComponent implements OnInit {
   createCollection(isCreate: boolean) {
     console.log(isCreate);
     this.isCreateCollection = isCreate;
+  }
+
+  addToCollection(collectionId: string) {
+    this.store.dispatch(addPictureTCollection({ collectionId, photoId: this.data.photoId }));
+    this.isAdded = true;
   }
 
   constructor(
