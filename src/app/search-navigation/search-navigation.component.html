@@ -1,0 +1,7 @@
+<mat-paginator *ngIf="navigation.total_pages" 
+              [length]="navigation.total"
+              [pageSize]="21"
+              [pageSizeOptions]="[21]"
+              (page)="getPaginatorData($event)"
+              >
+</mat-paginator>

@@ -8,7 +8,7 @@ export const initialState = {
     collections: []
 };
 
-export const searchFeatureKey = 'collections';
+export const collectionsFeatureKey = 'collections';
 
 const collectionsReducer: ActionReducer<CollectionsState> = createReducer(
     initialState,

@@ -5,7 +5,6 @@ import { CollectionsService } from '../collections.service';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../store/interfaces/app.state.interfaces';
 import { selectIsUserAuthorized } from '../../store/selectors/collections.selector';
-import { concatAll } from 'rxjs/operators';
 
 @Component({
     selector: 'app-image-card',
@@ -23,22 +22,23 @@ export class ImageCardComponent implements OnInit {
     @ViewChild('img') img: ElementRef;
 
     public rows: number = 0;
-
-    private isAuthorized$;
+    private isAuthorized: boolean = false;
+    private isAuthorized$ = this.store.pipe(select(selectIsUserAuthorized))
+        .subscribe(isAuthorized => {
+            this.isAuthorized = isAuthorized
+        });
+    
 
     ngOnInit(): void {
     }
 
     addImage() {
-        this.isAuthorized$ = this.store.pipe(select(selectIsUserAuthorized))
-            .subscribe(isAuthorized => {
-                if (!isAuthorized) {
-                    window.open(this.collectionsService.buildAutentificationString(), "_self");
-                }
-                else {
-                    this.dialog.open(AddToCollectionWindowComponent, { data: { photoId: this.id } });
-                }
-            })
+        if (!this.isAuthorized) {
+            window.open(this.collectionsService.buildAutentificationString(), "_self");
+        }
+        else {
+            this.dialog.open(AddToCollectionWindowComponent, { data: { photoId: this.id } });
+        }
     }
 
     ngOnDestroy(): void {

@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 import { Collection } from '../interfaces/collections.state.interface'
-import { Image } from '../interfaces/images.state.intefaces'
 
 export const userAuthentication = createAction('[Auth] user aurenrification',  props<{ authToken: string }>());
 

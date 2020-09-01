@@ -13,7 +13,15 @@ export interface Image {
     }
 }
 
-export interface ImagesState {
+/*export interface ImagesState {
     images: Image[];
     error: boolean;
+}*/
+
+export interface SearchState {
+    searchRequest: string;
+    currentPage: number;
+    total: number;
+    total_pages: number;
+    results: Image[]
 }
