@@ -1,7 +1,7 @@
-import { ImagesState } from './images.state.intefaces';
+import { SearchState } from './search.state.intefaces';
 import { CollectionsState } from './collections.state.interface';
 
 export interface AppState {
-    imagesFeature: ImagesState;
+    searchFeature: SearchState;
     collectionsFeature: CollectionsState;
 }
